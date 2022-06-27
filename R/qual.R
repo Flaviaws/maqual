@@ -14,7 +14,7 @@ quality <- function(m, fm, lvl, q, na.rm){
           }
           # multiplica a média do nível pelo peso e divide pelo total de niveis
 
-          focal(m, fm, fun=pond, lvl=lvl, q=q, na.rm=na.rm)
+          terra::focal(m, fm, fun=pond, lvl=lvl, q=q, na.rm=na.rm)
           # aplica "pond" com move window pela paisagem
         }
 
