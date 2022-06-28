@@ -5,17 +5,23 @@
 #' @param lvl Número do nível (ou elemento da matriz) que será calculado a qualidade
 #' @param q Valor de peso para calcular a qualidade de lvl
 #' @param na.rm Argumento lógico
-#' @param hab Argumento do tipo "character" que representa o nome do habitat
-#'            que sera considerado em "lvl
 #'
 #' @return Um SpatRaster
 #' @export
 #'
 #' @examples
-#' mm <- matrix(sample(1:10, siz=100, replace=T), ncol=10, nrow=10)
-#' map <- rast(mm)
+#' mm <- base::matrix(base::sample(1:10,
+#'                    size = 100, replace = TRUE), ncol = 10, nrow = 10)
+#' map <- terra::rast(mm)
 #'
-#' fm <- mx_weight(map, 100, 30, "circle")
+#' fm <- base::matrix(c(0, 0, 1, 1, 1, 0, 0,
+#'                      0, 1, 1, 1, 1, 1, 0,
+#'                      1, 1, 1, 1, 1, 1, 1,
+#'                      1, 1, 1, 1, 1, 1, 1,
+#'                      1, 1, 1, 1, 1, 1, 1,
+#'                      0, 1, 1, 1, 1, 1, 0,
+#'                      0, 0, 1, 1, 1, 0, 0),
+#'                    ncol = 7, nrow = 7)
 #'
 #' info <- base::data.frame(lvl_cod = c(1:10),
 #'                          habitat = c("Floresta madura", "Floresta incial",
@@ -30,17 +36,14 @@
 #' lvl <- info$lvl_cod[1]
 #' q <- info$q_peso[1]
 #' na.rm <- TRUE
-#' hab <- info$habitat[1]
 #'
-#' plot(quality(m, fm, lvl, q, na.rm), main = hab)
+#' quality(m, fm, lvl, q, na.rm)
 #'
 quality <- function(m, fm, lvl, q, na.rm){
           ##
           # checando os argumentos
-          #if(base::inherits(m, "SpatRaster", which = FALSE)){
-          #  stop("Argument 'm' must be an object of class of SpatRaster")
-          #}
-          # para se "m" nao for um SpatRaster e avisa o erro
+          stopifnot(base::inherits(m, "SpatRaster"))
+          # para se "m" nao for um SpatRaster
           stopifnot(base::is.matrix(fm))
           # para se "fm" nao for uma matriz
           if (base::length(lvl) != base::length(q)){
@@ -50,9 +53,6 @@ quality <- function(m, fm, lvl, q, na.rm){
           stopifnot(base::is.logical(na.rm), base::length(na.rm) == 1)
           # para se "na.rm" nao for uma argumento logico e se tiver comprimento
           # diferente de 1
-          stopifnot(base::is.character(hab))
-          # para se "hab" não for um objeto do tipo caracter, ou seja,
-          # algo como o nome do habitat que sera considerado em "lvl"
           ##
 
           ##
