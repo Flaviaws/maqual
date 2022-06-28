@@ -12,66 +12,34 @@
 #' @export
 #'
 #' @examples
-#' map <- mapa_teste
+#' mm <- matrix(sample(1:10, siz=100, replace=T), ncol=10, nrow=10)
+#' map <- rast(mm)
 #'
-#' map2 <- base::matrix(c(1,1, # floresta
-#'                        3,1,
-#'                        4,1,
-#'                        5,1,
-#'                       49,1,
-#'                       10,2, # natural nao-florestal
-#'                       11,2,
-#'                       12,2,
-#'                       32,2,
-#'                       29,2,
-#'                       13,2,
-#'                       14,3, # pastagem
-#'                       15,3,
-#'                       18,4, # agricultura
-#'                       19,4,
-#'                       39,4,
-#'                       20,4,
-#'                       40,4,
-#'                       41,4,
-#'                       36,4,
-#'                       46,4,
-#'                       47,4,
-#'                       48,4,
-#'                        9,5, # silvicultura
-#'                       21,3,
-#'                       22,6, # nao-vegetada
-#'                       23,6,
-#'                       24,7, # urbano
-#'                       30,8, # mineira??o
-#'                       25,6,
-#'                       26,9, # agua
-#'                       33,9,
-#'                       31,9,
-#'                       27,7), ncol = 2, byrow = TRUE)
+#' fm <- mx_weight(map, 100, 30, "circle")
 #'
-#' map_C <- terra::classify(map, map2)
+#' info <- base::data.frame(lvl_cod = c(1:10),
+#'                          habitat = c("Floresta madura", "Floresta incial",
+#'                                      "Savana", "Pastagem",
+#'                                      "Agricultura", "Silvicultura",
+#'                                      "N-vegetada", "Urbano",
+#'                                      "Mineiracao", "Agua"),
+#'                           q_peso = c(10:1))
 #'
-#' fm <- maqual::mx_weight(map_c, 100, 30, "circle")
-#'
-#' info <- base::data.frame(lvl_cod = c(1:9),
-#'                          habitat = c("Floresta", "Natural n-florestal", "Pastagem",
-#'                                      "Agricultura", "Silvicultura", "N-vegetada",
-#'                                      "Urbano", "Mineiracao", "Agua"),
-#'                           q_peso = c(9:1))
-#'
-#' m <- map_c
+#' m <- map
 #' fm <- fm
 #' lvl <- info$lvl_cod[1]
 #' q <- info$q_peso[1]
 #' na.rm <- TRUE
 #' hab <- info$habitat[1]
 #'
-quality <- function(m, fm, lvl, q, na.rm, hab){
+#' plot(quality(m, fm, lvl, q, na.rm), main = hab)
+#'
+quality <- function(m, fm, lvl, q, na.rm){
           ##
           # checando os argumentos
-          if(base::inherits(m, "SpatRaster", which = FALSE)){
-            stop("Argument 'm' must be an object of class of 'SpatRaster'")
-          }
+          #if(base::inherits(m, "SpatRaster", which = FALSE)){
+          #  stop("Argument 'm' must be an object of class of SpatRaster")
+          #}
           # para se "m" nao for um SpatRaster e avisa o erro
           stopifnot(base::is.matrix(fm))
           # para se "fm" nao for uma matriz
@@ -106,8 +74,8 @@ quality <- function(m, fm, lvl, q, na.rm, hab){
           ##
           # aplica o focal ao m utlizando a funcao pond
           r <- terra::focal(m, fm, fun = pond, lvl = lvl, q = q, na.rm = na.rm)
-          return(graphics::plot(r, main = hab))
-          # retorna o plot do SpatRaster r com os resultados do focal para
+          return(r)
+          # retorna um SpatRaster r com os resultados do focal para
           # o nível de habitat definido
           ##
         }
