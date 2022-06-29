@@ -47,7 +47,7 @@ quality <- function(m, fm, lvl, q, na.rm, tpeso){
 
           ##
           # cria a funcao que sera utilizada no focal
-          pond <- function(x, lvl, q, na.rm){
+          pond <- function(x, lvl, q, na.rm, tpeso){
             ((base::mean(x %in% lvl, na.rm = na.rm)*q)*10)/tpeso
           }
           # multiplica a média do nível pelo peso e divide pelo soma dos pesos
