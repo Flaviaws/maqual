@@ -14,23 +14,6 @@
 #'                    size = 100, replace = TRUE), ncol = 10, nrow = 10)
 #' map <- terra::rast(mm)
 #'
-#' fm <- base::matrix(c(0, 0, 1, 1, 1, 0, 0,
-#'                      0, 1, 1, 1, 1, 1, 0,
-#'                      1, 1, 1, 1, 1, 1, 1,
-#'                      1, 1, 1, 1, 1, 1, 1,
-#'                      1, 1, 1, 1, 1, 1, 1,
-#'                      0, 1, 1, 1, 1, 1, 0,
-#'                      0, 0, 1, 1, 1, 0, 0),
-#'                    ncol = 7, nrow = 7)
-#'
-#' info <- base::data.frame(lvl_cod = c(1:10),
-#'                          habitat = c("Floresta madura", "Floresta incial",
-#'                                      "Savana", "Pastagem",
-#'                                      "Agricultura", "Silvicultura",
-#'                                      "N-vegetada", "Urbano",
-#'                                      "Mineiracao", "Agua"),
-#'                           q_peso = c(10:1))
-#'
 #' m <- map
 #' fm <- fm
 #' lvl <- info$lvl_cod[1]
