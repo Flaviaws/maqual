@@ -87,7 +87,6 @@ matriz_r
 ```
 
 
-
 #### **quality**
 A função **`quality`** produz uma superfície de qualidade da matriz
 representada em um SpatRaster.
@@ -120,12 +119,15 @@ fm
   *lvl* nos dará o valor do nível (elemento da matriz) para qual a função será 
   aplicada
   
-  Iremos carregar um dataframe presente no conjunto de dados do pacote e pelo 
-  qual poderemos selecionar o valor de *lvl* desejado
+  Iremos carregar um dataframe presente no conjunto de dados do pacote, pelo 
+  qual poderemos selecionar o valor de *lvl* desejado.
+  
+  Selecionaremos o valor de *lvl* para o habitat 'Floresta madura'.
 ```{r}
 info
-lvl <- info$lvl_cod[1]
-lvl
+
+lvl_f <- info$lvl_cod[1]
+lvl_f
 ```
 * O quarto argumento da função é *q*, um objeto do tipo vetor numérico.
 
@@ -133,13 +135,16 @@ lvl
   
   Podemos selecionar o valor de *q* desejado a partir do dataframe
   carregado anteriormente.
+  
+  O valor de *q* está intimamente recionado ao valor de *lvl*. Portanto, iremos 
+  seleciona o valor de *q* para o mesmo habitat, o de 'Floresta madura'.
 ```{r}
-q <- info$q_peso[1]
-q
+q_f <- info$q_peso[1]
+q_f
 ```
 * O último argumento da função é *na.rm*, um objeto do tipo vetor de caracteres.
 
-  *na.rm* é um argumento lógico (TRUE or FALSE) que nos dirá se o 'NA's
+  *na.rm* é um argumento lógico (*TRUE* ou *FALSE*) que nos dirá se o 'NA's
   possivelmente presentes em nossos dados serão ou não removidos.
 ```{r}
 na.rm <- TRUE
@@ -148,10 +153,42 @@ na.rm
 Agora, com todos os argumentos definidos,
 podemos observar a funcionalidade de **`quality`**.
 ```{r}
-qual <- quality(m, fm, lvl, q, na.rm)
-qual
+qual_f <- quality(m, fm, lvl = lvl_f, q = lvl_f, na.rm)
+qual_f
+```
+Observe que o objeto 'info' disponível no pacote contém vários valores para 'lvl'
+e 'q'. 
+
+Vamos observar como o resultado com outros valores nestes parâmetros,
+resultando na qualidade da matriz para outros habitats.
+
+* para o habitat 'pastagem'
+```{r}
+info
+
+lvl_p <- info$lvl_cod[4]
+lvl_p
+
+q_p <- info$q_peso[4]
+q_p
+
+qual_p <- quality(m, fm, lvl = lvl_p, q = lvl_p, na.rm)
+qual_p
 ```
 
+* para o habitat 'urbano'
+```{r}
+info
+
+lvl_u <- info$lvl_cod[8]
+lvl_u
+
+q_u <- info$q_peso[8]
+q_u
+
+qual_u <- quality(m, fm, lvl = lvl_u, q = lvl_u, na.rm)
+qual_u
+```
 
 
 
