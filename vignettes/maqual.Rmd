@@ -1,0 +1,159 @@
+---
+title: "Tutorial do pacote 'maqual'"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tutorial do pacote 'maqual'}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Carregando os pacotes necessários:
+```{r setup}
+library(terra)
+library(maqual)
+```
+
+### Conjunto de dados do pacote
+Inspecionar conjunto de dados do maqual
+
+* **fm**: matriz para o focal (focal matrix).
+```{r}
+fm
+```
+* **info**: dataframe com informações sobre o mapa utilizado no teste da função 'quality'.
+```{r}
+info
+```
+
+--------------
+### Funções do pacote
+
+#### **mx_weight**
+A função **`mx_weight`** produz uma matriz que poderá ser utilizada na função 'quality'.
+
+Vamos definir os valores dos argumento das função para então observar a sua funcionalidade.
+
+* O primeiro argumento da função é *m*, um objeto do tipo SpatRaster.
+  
+  Aqui criamos um SpatRaster hipotético.
+```{r}
+mm <- base::matrix(base::sample(1:10,
+                   size = 100, replace = TRUE), ncol = 10, nrow = 10)
+map <- terra::rast(mm)
+m <- map
+m
+```
+* O segundo argumento da função é *tam*, um objeto do tipo vetor numérico.
+
+  *tam* representa o tamanho desejado da janela do seu focal ("move window").
+```{r}
+tam <- 100
+tam
+```
+* O terceiro argumento da função é *pix*, um objeto do tipo vetor numérico.
+
+  *pix* representa o tamanho do pixel do seu SpatRaster 'm'.
+```{r}
+pix <- 30
+pix
+```
+* O último argumento da função é *type*, um objeto do tipo vetor de caracteres.
+
+  *type* representa o formato da sua janela para o focal ("move window").
+```{r}
+type_c <- "circle"
+type_c
+```
+Agora, com todos os argumentos definidos,
+podemos observar a funcionalidade de **`mx_weight`**.
+```{r}
+matriz_c <- mx_weight(m = m, tam = tam, pix = pix, type = type_c)
+matriz_c
+```
+Vamos observar a matriz resultante para o outro valor de *type* possível.
+```{r}
+type_r <- "rectangle"
+type_r
+
+matriz_r <- mx_weight(m = m, tam = tam, pix = pix, type = type_r)
+matriz_r
+```
+
+
+
+#### **quality**
+A função **`quality`** produz uma superfície de qualidade da matriz
+representada em um SpatRaster.
+
+Vamos definir os valores dos argumento das função para então observar
+a sua funcionalidade.
+
+* O primeiro argumento da função é *m*, um objeto do tipo SpatRaster.
+  
+  Aqui criamos um SpatRaster hipotético.
+```{r}
+mm <- base::matrix(base::sample(1:10,
+                   size = 100, replace = TRUE), ncol = 10, nrow = 10)
+map <- terra::rast(mm)
+m <- map
+m
+```
+* O segundo argumento da função é *fm*, um objeto do tipo matriz.
+
+  *fm* é uma matriz que representa o formato e tamanho desejado da janela 
+  do seu focal ("move window").
+  
+  Iremos carregar uma matriz presente no conjunto de dados do pacote.
+```{r}
+fm <- fm
+fm
+```
+* O terceiro argumento da função é *lvl*, um objeto do tipo vetor numérico.
+
+  *lvl* nos dará o valor do nível (elemento da matriz) para qual a função será 
+  aplicada
+  
+  Iremos carregar um dataframe presente no conjunto de dados do pacote e pelo 
+  qual poderemos selecionar o valor de *lvl* desejado
+```{r}
+info
+lvl <- info$lvl_cod[1]
+lvl
+```
+* O quarto argumento da função é *q*, um objeto do tipo vetor numérico.
+
+  *q* nos dará o Valor de peso por qual o nível especificado será ponderado.
+  
+  Podemos selecionar o valor de *q* desejado a partir do dataframe
+  carregado anteriormente.
+```{r}
+q <- info$q_peso[1]
+q
+```
+* O último argumento da função é *na.rm*, um objeto do tipo vetor de caracteres.
+
+  *na.rm* é um argumento lógico (TRUE or FALSE) que nos dirá se o 'NA's
+  possivelmente presentes em nossos dados serão ou não removidos.
+```{r}
+na.rm <- TRUE
+na.rm
+```
+Agora, com todos os argumentos definidos,
+podemos observar a funcionalidade de **`quality`**.
+```{r}
+qual <- quality(m, fm, lvl, q, na.rm)
+qual
+```
+
+
+
+
+
+

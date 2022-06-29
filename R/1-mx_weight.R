@@ -4,7 +4,7 @@
 #' @param tam Tamanho desejado da janela do focal
 #' @param pix Tamanho do pixel do SpatRaster
 #' @param type Tipo de filtro que será aplicado para criar a matriz
-#'             Tupos de acordo com "type" em terra::focalMat
+#'             Tipos podem ser circular ("circle) ou retanular ("rectangle)
 #' @return Uma matriz
 #' @export
 #'
@@ -29,7 +29,7 @@ mx_weight <- function(m, tam, pix, type){
             # para se "tam" nao for numerico e apenas um valor
             stopifnot(base::is.numeric(pix), base::length(pix) == 1)
             # para se "pix" nao for numerico e apenas um valor
-            stopifnot(type %in% c("circle", "Gauss", "rectangle"))
+            stopifnot(type %in% c("circle", "rectangle"))
             # para se "type" nao for igual a um dos tres tipos possiveis
             ##
 
