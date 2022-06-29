@@ -2,25 +2,26 @@
 % Please edit documentation in R/1-mx_weight.R
 \name{mx_weight}
 \alias{mx_weight}
-\title{Produz uma matriz para o focal}
+\title{Criacao de matriz para aplicacao em uma funcao de focal}
 \usage{
 mx_weight(m, tam, pix, type)
 }
 \arguments{
-\item{m}{SpatRaster original}
+\item{m}{Objeto SpatRaster original}
 
 \item{tam}{Tamanho desejado da janela do focal}
 
 \item{pix}{Tamanho do pixel do SpatRaster}
 
 \item{type}{Tipo de filtro que será aplicado para criar a matriz
-Tipos podem ser circular ("circle) ou retanular ("rectangle)}
+Podem ser circular ("circle) ou retanular ("rectangle)}
 }
 \value{
-Uma matriz
+Um objeto do tipo matriz
 }
 \description{
-Produz uma matriz para o focal
+Permite a criação de uma matriz numérica para definir a janela
+que será utilizada no focal ("move window")
 }
 \examples{
  mm <- base::matrix(base::sample(1:10,

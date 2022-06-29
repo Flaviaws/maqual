@@ -3,7 +3,7 @@
 \docType{data}
 \name{fm}
 \alias{fm}
-\title{Matriz circular}
+\title{Matriz numerica de acordo com um filtro para o focal}
 \format{
 matrix
 }
@@ -15,7 +15,8 @@ fm
 }
 \description{
 Uma matriz com valores de 0 e 1 com 7 colunas e 7 linhas.
-Os valores de 1 estão distribuidos de forma circular, enquanto
+O filtro considerado é type="circle", então os valores de 1 estão
+distribuidos de forma circular, enquanto
 os valores de 0 estão ao redor do círculo.
 }
 \keyword{datasets}

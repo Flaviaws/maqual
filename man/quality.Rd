@@ -2,28 +2,29 @@
 % Please edit documentation in R/2-quality.R
 \name{quality}
 \alias{quality}
-\title{Calcula a qualidade da matriz}
+\title{Calculo da qualidade da matriz}
 \usage{
 quality(m, fm, lvl, q, na.rm, tpeso)
 }
 \arguments{
-\item{m}{SpatRaster original}
+\item{m}{Objeto SpatRaster original}
 
-\item{fm}{Objeto de matriz numérica para o "move window" do focal}
+\item{fm}{Objeto de matriz numérica que será utilizado no "move window" do focal}
 
-\item{lvl}{Número do nível (ou elemento da matriz) que será calculado a qualidade}
+\item{lvl}{Código do nível (elemento da matriz) que será calculado a qualidade}
 
-\item{q}{Valor de peso para calcular a qualidade de lvl}
+\item{q}{Valor de peso para calcular a qualidade de 'lvl'}
 
 \item{na.rm}{Argumento lógico}
 
-\item{tpeso}{Valor da soma dos pesos, se mais de um for considerado}
+\item{tpeso}{Valor da soma dos pesos}
 }
 \value{
-Um SpatRaster
+Um objeto SpatRaster
 }
 \description{
-Calcula a qualidade da matriz
+Possibilita o cálculo de quão presente está um determinado elemento na
+paisagem ponderado pelo peso que definido para o mesmo.
 }
 \examples{
 mm <- base::matrix(base::sample(1:10,

@@ -1,5 +1,6 @@
 ---
 title: "Tutorial do pacote 'maqual'"
+author: "Flávia Fernanda Weber de Souza"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Tutorial do pacote 'maqual'}

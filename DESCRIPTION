@@ -1,6 +1,6 @@
 Package: maqual
-Title: Pacote para cálculo de qualidade da matriz
-Version: 0.0.1.0001
+Title: Pacote para calculo de qualidade da matriz
+Version: 0.0.1.0002
 Authors@R: 
     person("Flavia", "Weber-Souza", , "flaviafernandaws@gmail.com.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-6926-8417"))

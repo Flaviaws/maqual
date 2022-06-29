@@ -1,13 +1,16 @@
-#' Calcula a qualidade da matriz
+#' Calculo da qualidade da matriz
 #'
-#' @param m SpatRaster original
-#' @param fm Objeto de matriz numérica para o "move window" do focal
-#' @param lvl Número do nível (ou elemento da matriz) que será calculado a qualidade
-#' @param q Valor de peso para calcular a qualidade de lvl
+#' Possibilita o cálculo de quão presente está um determinado elemento na
+#' paisagem ponderado pelo peso que definido para o mesmo.
+#'
+#' @param m Objeto SpatRaster original
+#' @param fm Objeto de matriz numérica que será utilizado no "move window" do focal
+#' @param lvl Código do nível (elemento da matriz) que será calculado a qualidade
+#' @param q Valor de peso para calcular a qualidade de 'lvl'
 #' @param na.rm Argumento lógico
-#' @param tpeso Valor da soma dos pesos, se mais de um for considerado
+#' @param tpeso Valor da soma dos pesos
 #'
-#' @return Um SpatRaster
+#' @return Um objeto SpatRaster
 #' @export
 #'
 #' @examples

@@ -1,4 +1,4 @@
-#' Informações sobre "map"
+#' Informacoes hipoteticas para detalhar um SpatRaster
 #'
 #' Dataframe com 10 linhas e 3 colunas.
 #' Coluna 'lvl_cod' representa os códigos de cada nível de elemento da paisagem.
