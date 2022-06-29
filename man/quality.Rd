@@ -4,7 +4,7 @@
 \alias{quality}
 \title{Calcula a qualidade da matriz}
 \usage{
-quality(m, fm, lvl, q, na.rm)
+quality(m, fm, lvl, q, na.rm, tpeso)
 }
 \arguments{
 \item{m}{SpatRaster original}
@@ -16,6 +16,8 @@ quality(m, fm, lvl, q, na.rm)
 \item{q}{Valor de peso para calcular a qualidade de lvl}
 
 \item{na.rm}{Argumento lógico}
+
+\item{tpeso}{Valor da soma dos pesos, se mais de um for considerado}
 }
 \value{
 Um SpatRaster
@@ -33,6 +35,7 @@ fm <- fm
 lvl <- info$lvl_cod[1]
 q <- info$q_peso[1]
 na.rm <- TRUE
+tpeso <- sum(info$q_peso)
 
 quality(m, fm, lvl, q, na.rm)
 

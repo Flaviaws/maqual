@@ -5,6 +5,7 @@
 #' @param lvl Número do nível (ou elemento da matriz) que será calculado a qualidade
 #' @param q Valor de peso para calcular a qualidade de lvl
 #' @param na.rm Argumento lógico
+#' @param tpeso Valor da soma dos pesos, se mais de um for considerado
 #'
 #' @return Um SpatRaster
 #' @export
@@ -19,10 +20,11 @@
 #' lvl <- info$lvl_cod[1]
 #' q <- info$q_peso[1]
 #' na.rm <- TRUE
+#' tpeso <- sum(info$q_peso)
 #'
 #' quality(m, fm, lvl, q, na.rm)
 #'
-quality <- function(m, fm, lvl, q, na.rm){
+quality <- function(m, fm, lvl, q, na.rm, tpeso){
           ##
           # checando os argumentos
           stopifnot(base::inherits(m, "SpatRaster"))
@@ -36,19 +38,16 @@ quality <- function(m, fm, lvl, q, na.rm){
           stopifnot(base::is.logical(na.rm), base::length(na.rm) == 1)
           # para se "na.rm" nao for uma argumento logico e se tiver comprimento
           # diferente de 1
-          ##
-
-          ##
-          # calcula a soma dos pesos dos níveis do spatraster
-          l <- sum(c(info$q_peso))
+          stopifnot(base::is.vector(tpeso))
+          # para se "tpesos" nao for um vetor
           ##
 
           ##
           # cria a funcao que sera utilizada no focal
           pond <- function(x, lvl, q, na.rm){
-            ((base::mean(x %in% lvl, na.rm = na.rm)*q)*10)/l
+            ((base::mean(x %in% lvl, na.rm = na.rm)*q)*10)/tpeso
           }
-          # multiplica a média do nível pelo peso e divide pelo soma dos pesos dos niveis
+          # multiplica a média do nível pelo peso e divide pelo soma dos pesos
           ##
 
           ##

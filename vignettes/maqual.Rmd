@@ -142,7 +142,7 @@ lvl_f
 q_f <- info$q_peso[1]
 q_f
 ```
-* O último argumento da função é *na.rm*, um objeto do tipo vetor de caracteres.
+* O quinto argumento da função é *na.rm*, um objeto do tipo vetor de caracteres.
 
   *na.rm* é um argumento lógico (*TRUE* ou *FALSE*) que nos dirá se o 'NA's
   possivelmente presentes em nossos dados serão ou não removidos.
@@ -150,10 +150,18 @@ q_f
 na.rm <- TRUE
 na.rm
 ```
+* O último argumento da função é *tpeso*, um objeto do tipo vetor numérico.
+
+  *tpeso* nos dará o valor da soma dos totais de pesos considerados.
+```{r}
+t <- sum(info$q_peso)
+tpeso <- t
+tpeso
+```
 Agora, com todos os argumentos definidos,
 podemos observar a funcionalidade de **`quality`**.
 ```{r}
-qual_f <- quality(m, fm, lvl = lvl_f, q = lvl_f, na.rm)
+qual_f <- quality(m, fm, lvl = lvl_f, q = lvl_f, na.rm, tpeso)
 qual_f
 ```
 Observe que o objeto 'info' disponível no pacote contém vários valores para 'lvl'
@@ -172,7 +180,7 @@ lvl_p
 q_p <- info$q_peso[4]
 q_p
 
-qual_p <- quality(m, fm, lvl = lvl_p, q = lvl_p, na.rm)
+qual_p <- quality(m, fm, lvl = lvl_p, q = lvl_p, na.rm, tpeso)
 qual_p
 ```
 
@@ -186,7 +194,7 @@ lvl_u
 q_u <- info$q_peso[8]
 q_u
 
-qual_u <- quality(m, fm, lvl = lvl_u, q = lvl_u, na.rm)
+qual_u <- quality(m, fm, lvl = lvl_u, q = lvl_u, na.rm, tpeso)
 qual_u
 ```
 
