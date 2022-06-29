@@ -1,7 +1,7 @@
 #' Calculo da qualidade da matriz
 #'
 #' Possibilita o cálculo de quão presente está um determinado elemento na
-#' paisagem ponderado pelo peso que definido para o mesmo.
+#' paisagem ponderado pelo peso definido para o mesmo.
 #'
 #' @param m Objeto SpatRaster original
 #' @param fm Objeto de matriz numérica que será utilizado no "move window" do focal
@@ -10,7 +10,7 @@
 #' @param na.rm Argumento lógico
 #' @param tpeso Valor da soma dos pesos
 #'
-#' @return Um objeto SpatRaster
+#' @return SpatRaster
 #' @export
 #'
 #' @examples

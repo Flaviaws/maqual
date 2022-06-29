@@ -3,7 +3,7 @@
 \docType{data}
 \name{info}
 \alias{info}
-\title{Informacoes hipoteticas para detalhar um SpatRaster}
+\title{Dado: informacoes hipoteticas para detalhar um SpatRaster}
 \format{
 dataframe
 }

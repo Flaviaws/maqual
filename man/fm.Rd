@@ -3,7 +3,7 @@
 \docType{data}
 \name{fm}
 \alias{fm}
-\title{Matriz numerica de acordo com um filtro para o focal}
+\title{Dado: matriz numerica de acordo com um filtro para o focal}
 \format{
 matrix
 }

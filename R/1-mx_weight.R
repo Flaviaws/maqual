@@ -1,14 +1,14 @@
 #' Criacao de matriz para aplicacao em uma funcao de focal
 #'
 #' Permite a criação de uma matriz numérica para definir a janela
-#' que será utilizada no focal ("move window")
+#' que será utilizada no focal ("move window").
 #'
 #' @param m Objeto SpatRaster original
 #' @param tam Tamanho desejado da janela do focal
 #' @param pix Tamanho do pixel do SpatRaster
 #' @param type Tipo de filtro que será aplicado para criar a matriz
-#'             Podem ser circular ("circle) ou retanular ("rectangle)
-#' @return Um objeto do tipo matriz
+#'             Pode ser circular ("circle) ou retanular ("rectangle)
+#' @return Matrix
 #' @export
 #'
 #' @examples

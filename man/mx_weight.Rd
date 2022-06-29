@@ -14,14 +14,14 @@ mx_weight(m, tam, pix, type)
 \item{pix}{Tamanho do pixel do SpatRaster}
 
 \item{type}{Tipo de filtro que será aplicado para criar a matriz
-Podem ser circular ("circle) ou retanular ("rectangle)}
+Pode ser circular ("circle) ou retanular ("rectangle)}
 }
 \value{
-Um objeto do tipo matriz
+Matrix
 }
 \description{
 Permite a criação de uma matriz numérica para definir a janela
-que será utilizada no focal ("move window")
+que será utilizada no focal ("move window").
 }
 \examples{
  mm <- base::matrix(base::sample(1:10,

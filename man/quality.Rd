@@ -20,11 +20,11 @@ quality(m, fm, lvl, q, na.rm, tpeso)
 \item{tpeso}{Valor da soma dos pesos}
 }
 \value{
-Um objeto SpatRaster
+SpatRaster
 }
 \description{
 Possibilita o cálculo de quão presente está um determinado elemento na
-paisagem ponderado pelo peso que definido para o mesmo.
+paisagem ponderado pelo peso definido para o mesmo.
 }
 \examples{
 mm <- base::matrix(base::sample(1:10,
