@@ -14,7 +14,7 @@ mx_weight(m, tam, pix, type)
 \item{pix}{Tamanho do pixel do SpatRaster}
 
 \item{type}{Tipo de filtro que será aplicado para criar a matriz
-Tupos de acordo com "type" em terra::focalMat}
+Tipos podem ser circular ("circle) ou retanular ("rectangle)}
 }
 \value{
 Uma matriz
