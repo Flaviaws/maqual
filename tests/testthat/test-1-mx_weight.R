@@ -40,10 +40,12 @@ test_that("returned object class is correct", {
   type <- "circle"
 
   expect_vector(base::mean(terra::res(m))*(tam/pix))
+  d <- 1
   expect_vector(terra::focalMat(m, d, type = type))
   expect_vector(mx_weight(m, tam, pix, type))
 
   expect_type(base::mean(terra::res(m))*(tam/pix), "double")
+  d <- 1
   expect_type(terra::focalMat(m, d, type = type), "double")
   expect_type(mx_weight(m, tam, pix, type), "double")
 })
