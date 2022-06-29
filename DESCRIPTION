@@ -1,10 +1,16 @@
 Package: maqual
-Title: Pacote para cálculo da qualidade da matriz
+Title: Pacote para cálculo de qualidade da matriz
 Version: 0.0.1.0001
 Authors@R: 
     person("Flavia", "Weber-Souza", , "flaviafernandaws@gmail.com.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-6926-8417"))
-Description: What the package does (one paragraph).
+Description: O pacote 'maqual' trata do cálcula da qualidade da matriz na paisagem
+             a partir de SpatRasters.
+             Ele permite a criação de uma matriz numérica para definir a janela 
+             que será utilizada no focal ("move window"). Assim como, definido
+             uma classe de elemento da paisagem, o pacote possibilita o cálculo
+             de quão presente está este elemento na paisagem ponderado pelo 
+             peso que foi definido para o mesmo. 
 License: GPL (>= 3)
 URL: https://github.com/Flaviaws/maqual
 Imports: 

@@ -37,6 +37,6 @@ q <- info$q_peso[1]
 na.rm <- TRUE
 tpeso <- sum(info$q_peso)
 
-quality(m, fm, lvl, q, na.rm)
+quality(m, fm, lvl, q, na.rm, tpeso)
 
 }
