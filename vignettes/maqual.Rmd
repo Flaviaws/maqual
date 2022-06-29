@@ -16,162 +16,183 @@ knitr::opts_chunk$set(
 ```
 
 Carregando os pacotes necessários:
+
 ```{r setup}
 library(terra)
 library(maqual)
 ```
 
 ### Conjunto de dados do pacote
+
 Inspecionar conjunto de dados do maqual
 
-* **fm**: matriz para o focal (focal matrix).
+-   **fm**: matriz para o focal (focal matrix).
+
 ```{r}
 fm
 ```
-* **info**: dataframe com informações sobre o mapa utilizado no teste da função 'quality'.
+
+-   **info**: dataframe com informações sobre o mapa utilizado no teste da função 'quality'.
+
 ```{r}
 info
 ```
 
---------------
+------------------------------------------------------------------------
+
 ### Funções do pacote
 
 #### **mx_weight**
+
 A função **`mx_weight`** produz uma matriz que poderá ser utilizada na função 'quality'.
 
 Vamos definir os valores dos argumento das função para então observar a sua funcionalidade.
 
-* O primeiro argumento da função é *m*, um objeto do tipo SpatRaster.
-  
-  Aqui criamos um SpatRaster hipotético.
-```{r}
-mm <- base::matrix(base::sample(1:10,
-                   size = 100, replace = TRUE), ncol = 10, nrow = 10)
-map <- terra::rast(mm)
-m <- map
-m
-```
-* O segundo argumento da função é *tam*, um objeto do tipo vetor numérico.
+-   O primeiro argumento da função é *m*, um objeto do tipo SpatRaster.
 
-  *tam* representa o tamanho desejado da janela do seu focal ("move window").
-```{r}
-tam <- 100
-tam
-```
-* O terceiro argumento da função é *pix*, um objeto do tipo vetor numérico.
+    Aqui criamos um SpatRaster hipotético.
 
-  *pix* representa o tamanho do pixel do seu SpatRaster 'm'.
-```{r}
-pix <- 30
-pix
-```
-* O último argumento da função é *type*, um objeto do tipo vetor de caracteres.
+    ```{r}
+    mm <- base::matrix(base::sample(1:10,
+                       size = 100, replace = TRUE), ncol = 10, nrow = 10)
+    map <- terra::rast(mm)
+    m <- map
+    m
+    ```
 
-  *type* representa o formato da sua janela para o focal ("move window").
-```{r}
-type_c <- "circle"
-type_c
-```
-Agora, com todos os argumentos definidos,
-podemos observar a funcionalidade de **`mx_weight`**.
-```{r}
-matriz_c <- mx_weight(m = m, tam = tam, pix = pix, type = type_c)
-matriz_c
-```
-Vamos observar a matriz resultante para o outro valor de *type* possível.
-```{r}
-type_r <- "rectangle"
-type_r
+-   O segundo argumento da função é *tam*, um objeto do tipo vetor numérico.
 
-matriz_r <- mx_weight(m = m, tam = tam, pix = pix, type = type_r)
-matriz_r
-```
+    *tam* representa o tamanho desejado da janela do seu focal ("move window").
 
+    ```{r}
+    tam <- 100
+    tam
+    ```
+
+-   O terceiro argumento da função é *pix*, um objeto do tipo vetor numérico.
+
+    *pix* representa o tamanho do pixel do seu SpatRaster 'm'.
+
+    ```{r}
+    pix <- 30
+    pix
+    ```
+
+-   O último argumento da função é *type*, um objeto do tipo vetor de caracteres.
+
+    *type* representa o formato da sua janela para o focal ("move window").
+
+    ```{r}
+    type_c <- "circle"
+    type_c
+    ```
+
+    Agora, com todos os argumentos definidos, podemos observar a funcionalidade de **`mx_weight`**.
+
+    ```{r}
+    matriz_c <- mx_weight(m = m, tam = tam, pix = pix, type = type_c)
+    matriz_c
+    ```
+
+    Vamos observar a matriz resultante para o outro valor de *type* possível.
+
+    ```{r}
+    type_r <- "rectangle"
+    type_r
+
+    matriz_r <- mx_weight(m = m, tam = tam, pix = pix, type = type_r)
+    matriz_r
+    ```
 
 #### **quality**
-A função **`quality`** produz uma superfície de qualidade da matriz
-representada em um SpatRaster.
 
-Vamos definir os valores dos argumento das função para então observar
-a sua funcionalidade.
+A função **`quality`** produz uma superfície de qualidade da matriz representada em um SpatRaster.
 
-* O primeiro argumento da função é *m*, um objeto do tipo SpatRaster.
-  
-  Aqui criamos um SpatRaster hipotético.
-```{r}
-mm <- base::matrix(base::sample(1:10,
-                   size = 100, replace = TRUE), ncol = 10, nrow = 10)
-map <- terra::rast(mm)
-m <- map
-m
-```
-* O segundo argumento da função é *fm*, um objeto do tipo matriz.
+Vamos definir os valores dos argumento das função para então observar a sua funcionalidade.
 
-  *fm* é uma matriz que representa o formato e tamanho desejado da janela 
-  do seu focal ("move window").
-  
-  Iremos carregar uma matriz presente no conjunto de dados do pacote.
-```{r}
-fm <- fm
-fm
-```
-* O terceiro argumento da função é *lvl*, um objeto do tipo vetor numérico.
+-   O primeiro argumento da função é *m*, um objeto do tipo SpatRaster.
 
-  *lvl* nos dará o valor do nível (elemento da matriz) para qual a função será 
-  aplicada
-  
-  Iremos carregar um dataframe presente no conjunto de dados do pacote, pelo 
-  qual poderemos selecionar o valor de *lvl* desejado.
-  
-  Selecionaremos o valor de *lvl* para o habitat 'Floresta madura'.
-```{r}
-info
+    Aqui criamos um SpatRaster hipotético.
 
-lvl_f <- info$lvl_cod[1]
-lvl_f
-```
-* O quarto argumento da função é *q*, um objeto do tipo vetor numérico.
+    ```{r}
+    mm <- base::matrix(base::sample(1:10,
+                       size = 100, replace = TRUE), ncol = 10, nrow = 10)
+    map <- terra::rast(mm)
+    m <- map
+    m
+    ```
 
-  *q* nos dará o Valor de peso por qual o nível especificado será ponderado.
-  
-  Podemos selecionar o valor de *q* desejado a partir do dataframe
-  carregado anteriormente.
-  
-  O valor de *q* está intimamente recionado ao valor de *lvl*. Portanto, iremos 
-  seleciona o valor de *q* para o mesmo habitat, o de 'Floresta madura'.
-```{r}
-q_f <- info$q_peso[1]
-q_f
-```
-* O quinto argumento da função é *na.rm*, um objeto do tipo vetor de caracteres.
+-   O segundo argumento da função é *fm*, um objeto do tipo matriz.
 
-  *na.rm* é um argumento lógico (*TRUE* ou *FALSE*) que nos dirá se o 'NA's
-  possivelmente presentes em nossos dados serão ou não removidos.
-```{r}
-na.rm <- TRUE
-na.rm
-```
-* O último argumento da função é *tpeso*, um objeto do tipo vetor numérico.
+    *fm* é uma matriz que representa o formato e tamanho desejado da janela do seu focal ("move window").
 
-  *tpeso* nos dará o valor da soma dos totais de pesos considerados.
-```{r}
-t <- sum(info$q_peso)
-tpeso <- t
-tpeso
-```
-Agora, com todos os argumentos definidos,
-podemos observar a funcionalidade de **`quality`**.
-```{r}
-qual_f <- quality(m, fm, lvl = lvl_f, q = lvl_f, na.rm, tpeso)
-qual_f
-```
-Observe que o objeto 'info' disponível no pacote contém vários valores para 'lvl'
-e 'q'. 
+    Iremos carregar uma matriz presente no conjunto de dados do pacote.
 
-Vamos observar como o resultado com outros valores nestes parâmetros,
-resultando na qualidade da matriz para outros habitats.
+    ```{r}
+    fm <- fm
+    fm
+    ```
 
-* para o habitat 'pastagem'
+-   O terceiro argumento da função é *lvl*, um objeto do tipo vetor numérico.
+
+    *lvl* nos dará o valor do nível (elemento da matriz) para qual a função será aplicada
+
+    Iremos carregar um dataframe presente no conjunto de dados do pacote, pelo qual poderemos selecionar o valor de *lvl* desejado.
+
+    Selecionaremos o valor de *lvl* para o habitat 'Floresta madura'.
+
+    ```{r}
+    info
+
+    lvl_f <- info$lvl_cod[1]
+    lvl_f
+    ```
+
+-   O quarto argumento da função é *q*, um objeto do tipo vetor numérico.
+
+    *q* nos dará o Valor de peso por qual o nível especificado será ponderado.
+
+    Podemos selecionar o valor de *q* desejado a partir do dataframe carregado anteriormente.
+
+    O valor de *q* está intimamente recionado ao valor de *lvl*. Portanto, iremos seleciona o valor de *q* para o mesmo habitat, o de 'Floresta madura'.
+
+    ```{r}
+    q_f <- info$q_peso[1]
+    q_f
+    ```
+
+-   O quinto argumento da função é *na.rm*, um objeto do tipo vetor de caracteres.
+
+    *na.rm* é um argumento lógico (*TRUE* ou *FALSE*) que nos dirá se o 'NA's possivelmente presentes em nossos dados serão ou não removidos.
+
+    ```{r}
+    na.rm <- TRUE
+    na.rm
+    ```
+
+-   O último argumento da função é *tpeso*, um objeto do tipo vetor numérico.
+
+    *tpeso* nos dará o valor da soma dos totais de pesos considerados.
+
+    ```{r}
+    t <- sum(info$q_peso)
+    tpeso <- t
+    tpeso
+    ```
+
+    Agora, com todos os argumentos definidos, podemos observar a funcionalidade de **`quality`**.
+
+    ```{r}
+    qual_f <- quality(m, fm, lvl = lvl_f, q = lvl_f, na.rm, tpeso)
+    qual_f
+    ```
+
+    Observe que o objeto 'info' disponível no pacote contém vários valores para 'lvl' e 'q'.
+
+Vamos observar como o resultado com outros valores nestes parâmetros, resultando na qualidade da matriz para outros habitats.
+
+-   para o habitat 'pastagem'
+
 ```{r}
 info
 
@@ -185,7 +206,8 @@ qual_p <- quality(m, fm, lvl = lvl_p, q = lvl_p, na.rm, tpeso)
 qual_p
 ```
 
-* para o habitat 'urbano'
+-   para o habitat 'urbano'
+
 ```{r}
 info
 
@@ -198,8 +220,3 @@ q_u
 qual_u <- quality(m, fm, lvl = lvl_u, q = lvl_u, na.rm, tpeso)
 qual_u
 ```
-
-
-
-
-
