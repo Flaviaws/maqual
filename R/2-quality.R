@@ -39,19 +39,16 @@ quality <- function(m, fm, lvl, q, na.rm){
           ##
 
           ##
-          # calcula o total de níveis do spatraster
-          nlevels <- function(m){
-            m@ptr[["range_max"]]
-          }
-          l <- nlevels(m)  # salva em um novo objeto
+          # calcula a soma dos pesos dos níveis do spatraster
+          l <- sum(c(info$q_peso))
           ##
 
           ##
           # cria a funcao que sera utilizada no focal
           pond <- function(x, lvl, q, na.rm){
-            (base::mean(x %in% lvl, na.rm = na.rm)*q)/l
+            ((base::mean(x %in% lvl, na.rm = na.rm)*q)*10)/l
           }
-          # multiplica a média do nível pelo peso e divide pelo total de niveis
+          # multiplica a média do nível pelo peso e divide pelo soma dos pesos dos niveis
           ##
 
           ##

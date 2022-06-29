@@ -35,7 +35,7 @@ test_that("returned object class is correct", {
   q <- info$q_peso[1]
   na.rm <- TRUE
 
-  expect_vector(nlevels(m))
+  expect_vector(sum(c(info$q_peso)))
   expect_s4_class(quality(m, fm, lvl, q, na.rm), "SpatRaster")
   expect_type(quality(m, fm, lvl, q, na.rm), "S4")
 })
